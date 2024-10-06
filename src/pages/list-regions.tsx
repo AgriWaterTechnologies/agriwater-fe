@@ -43,6 +43,117 @@ export default function ListRegions() {
         probability: 50,
       },
     },
+    {
+      id: 3,
+      name: "Amazonas",
+      max: 34,
+      min: 21,
+      current: 23,
+      risk: "Low",
+      precipitation: {
+        probability: 50,
+      },
+    },    {
+      id: 3,
+      name: "Amazonas",
+      max: 34,
+      min: 21,
+      current: 23,
+      risk: "Low",
+      precipitation: {
+        probability: 50,
+      },
+    },    {
+      id: 3,
+      name: "Amazonas",
+      max: 34,
+      min: 21,
+      current: 23,
+      risk: "Low",
+      precipitation: {
+        probability: 50,
+      },
+    },    {
+      id: 3,
+      name: "Amazonas",
+      max: 34,
+      min: 21,
+      current: 23,
+      risk: "Low",
+      precipitation: {
+        probability: 50,
+      },
+    },    {
+      id: 3,
+      name: "Amazonas",
+      max: 34,
+      min: 21,
+      current: 23,
+      risk: "Low",
+      precipitation: {
+        probability: 50,
+      },
+    },    {
+      id: 3,
+      name: "Amazonas",
+      max: 34,
+      min: 21,
+      current: 23,
+      risk: "Low",
+      precipitation: {
+        probability: 50,
+      },
+    },    {
+      id: 3,
+      name: "Amazonas",
+      max: 34,
+      min: 21,
+      current: 23,
+      risk: "Low",
+      precipitation: {
+        probability: 50,
+      },
+    },    {
+      id: 3,
+      name: "Amazonas",
+      max: 34,
+      min: 21,
+      current: 23,
+      risk: "Low",
+      precipitation: {
+        probability: 50,
+      },
+    },    {
+      id: 3,
+      name: "Amazonas",
+      max: 34,
+      min: 21,
+      current: 23,
+      risk: "Low",
+      precipitation: {
+        probability: 50,
+      },
+    },    {
+      id: 3,
+      name: "Amazonas",
+      max: 34,
+      min: 21,
+      current: 23,
+      risk: "Low",
+      precipitation: {
+        probability: 50,
+      },
+    },    {
+      id: 3,
+      name: "Amazonas",
+      max: 34,
+      min: 21,
+      current: 23,
+      risk: "Low",
+      precipitation: {
+        probability: 50,
+      },
+    },
   ];
 
   const filteredRegions = mock.filter((region) =>
@@ -51,9 +162,9 @@ export default function ListRegions() {
 
   return (
     <Wrapper className="justify-center flex h-full overflow-hidden">
-      <div className="w-full max-w-4xl h-full">
-        <Header title="Regions" disableBackButton />
-        <div className="z-30 flex flex-col h-full rounded-lg bg-white px-6 gap-6">
+      <Header title="Regions" disableBackButton />
+      <div className="w-full max-w-4xl h-full overflow-hidden">
+        <div className="z-30 flex flex-col h-full rounded-lg bg-white px-6 gap-6 overflow-hidden pb-14">
           <Input
             startIcon={<Search size={18} className="text-white400" />}
             rootClassName="w-full"
@@ -61,7 +172,7 @@ export default function ListRegions() {
             onChange={(e) => setSearchParams(e.target.value)}
             value={searchParams}
           />
-          <div className="flex flex-col w-full gap-4 overflow-auto mb-28">
+          <div className="flex flex-col w-full h-screen gap-4 overflow-auto pb-10">
             {filteredRegions.map((region) => (
               <RegionCard
                 key={region.name}

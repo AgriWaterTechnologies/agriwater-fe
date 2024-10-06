@@ -34,7 +34,7 @@ export function GeojsonList({ coordinates }: { coordinates: { lat: number; lng: 
   console.log({ data })
 
   return (
-    <div className="h-[180px] w-full my-4 flex items-start bg-gradient-to-r from-[#018062] to-[#01513E] p-4 rounded-md">
+    <div className="h-[180px] w-full flex items-start bg-gradient-to-r from-[#018062] to-[#01513E] p-4 rounded-md">
       <div className="flex flex-col items-start justify-between h-full w-full text-white50">
         <strong>Temperature</strong>
         <div>
