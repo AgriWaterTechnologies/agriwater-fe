@@ -1,9 +1,9 @@
-
+**Project Setup**
 
  **Clone the repository:**
 
    ```bash
-   git clone <link>
+   git clone [<link>](https://github.com/AgriWaterTechnologies/agriwater-fe)
    cd agriwater-fe
    ```
 
