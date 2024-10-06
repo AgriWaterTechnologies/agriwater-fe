@@ -1,8 +1,10 @@
 import { Droplet, CircleAlert } from "lucide-react";
 import { GradientCard } from "./gradient-card";
+import { useNavigate } from "react-router-dom";
 
 type RegionCardProps = {
   name: string;
+  id: number;
   max: number;
   min: number;
   current: number;
@@ -16,12 +18,15 @@ export function RegionCard({
   name,
   max,
   min,
+  id,
   current,
   risk,
   precipitation,
 }: RegionCardProps) {
+
+  const navigate = useNavigate();
   return (
-    <GradientCard className="justify-between">
+    <GradientCard className="justify-between cursor-pointer" onClick={() => navigate(`/region/${id}`)}>
       <div className="flex flex-col">
         <p className="text-white font-semibold mb-3">{name}</p>
         <div className="flex gap-1 flex-col">

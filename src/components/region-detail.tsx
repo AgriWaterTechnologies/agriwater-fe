@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { Sprout } from "lucide-react";
+import { Droplet, Sprout, Sunrise, Sunset, Wind } from "lucide-react";
 import { GeojsonList } from "./geojson-list";
 import { DrawerHeader, DrawerTitle } from "./ui/drawer";
+import { Header } from "./header";
 
 export function RegionDetail({
   id,
@@ -40,20 +41,21 @@ export function RegionDetail({
 
       {region && !isLoading && (
         <div className="">
-          <DrawerHeader>
-            <DrawerTitle>{region.name}</DrawerTitle>
-          </DrawerHeader>
+          <Header title={region.name} />
 
-          <div className="p-4 flex flex-col">
+          <div className="p-4 flex flex-col gap-6">
             <div>
               <div className="flex items-center text-green700 gap-2">
                 <Sprout size={20} className="text-green700" />
-                <span className="font-medium">Ideal cultivation</span>
+                <span className="font-medium text-lg">Ideal cultivation</span>
               </div>
 
               <div className="flex gap-2 items-center mt-2">
                 {region?.idealCultivation.map((cultivation) => (
-                  <div key={cultivation} className="text-gray-400 text-sm py-1 px-2 rounded bg-white200">
+                  <div
+                    key={cultivation}
+                    className="text-gray-600 text-sm py-1 px-2 rounded bg-white200"
+                  >
                     {cultivation}
                   </div>
                 ))}
@@ -61,6 +63,30 @@ export function RegionDetail({
             </div>
 
             <GeojsonList coordinates={region.centralPoint} />
+
+            <div className="flex gap-4 flex-wrap items-center">
+              <div className="flex items-center text-green700 gap-2 border border-green700 rounded-md p-2 w-fit">
+                <Wind size={20} className="text-green700" />
+                <span className="font-medium text-lg">104 km/h</span>
+              </div>
+
+              <div className="flex items-center text-green700 gap-2 border border-green700 rounded-md p-2 w-fit">
+                <span className="flex gap-1 items-center">
+                  <Sunrise size={20} className="text-green700" />
+                  <span className="font-medium text-lg">05:10h</span>
+                </span>
+
+                <span className="flex gap-1 items-center">
+                  <Sunset size={20} className="text-green700" />
+                  <span className="font-medium text-lg">17:10h</span>
+                </span>
+              </div>
+
+              <div className="flex items-center text-green700 gap-2 border border-green700 rounded-md p-2 w-fit">
+                <Droplet size={20} className="text-green700" />
+                <span className="font-medium text-lg">10%</span>
+              </div>
+            </div>
           </div>
         </div>
       )}

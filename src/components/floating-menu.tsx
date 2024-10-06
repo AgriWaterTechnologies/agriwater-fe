@@ -9,7 +9,7 @@ export function FloatingMenu() {
   const isCurrentRoute = (path: string) => {
     const options = {
       home: pathname === "/",
-      listRegions: pathname === "/list-regions",
+      listRegions: pathname === "/list-regions" || pathname.startsWith("/region"),
     };
 
     return options[path as keyof typeof options];

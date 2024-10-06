@@ -11,6 +11,7 @@ export default function ListRegions() {
   const [searchParams, setSearchParams] = useState("");
   const mock = [
     {
+      id: 1,
       name: "Nasa",
       max: 34,
       min: 21,
@@ -21,6 +22,7 @@ export default function ListRegions() {
       },
     },
     {
+      id: 2,
       name: "Rio Grande",
       max: 34,
       min: 21,
@@ -31,6 +33,7 @@ export default function ListRegions() {
       },
     },
     {
+      id: 3,
       name: "Amazonas",
       max: 34,
       min: 21,
@@ -49,7 +52,7 @@ export default function ListRegions() {
   return (
     <Wrapper className="justify-center flex h-full overflow-hidden">
       <div className="w-full max-w-4xl h-full">
-        <Header title="Regions" />
+        <Header title="Regions" disableBackButton />
         <div className="z-30 flex flex-col h-full rounded-lg bg-white px-6 gap-6">
           <Input
             startIcon={<Search size={18} className="text-white400" />}
@@ -67,6 +70,7 @@ export default function ListRegions() {
                 min={region.min}
                 current={region.current}
                 risk={region.risk}
+                id={region.id}
                 precipitation={{ probability: 50 }}
               />
             ))}

@@ -13,11 +13,16 @@ export default {
       green700: '#2D6645',
       green600: '#278F52',
       green500: '#14B95A',
+      green50: "#E6F7F2",
       white400: '#A8B3C4',
       white300: '#C8CED9',
       white200: '#E0E4EA',
       white100: '#F1F3F6',
       white50: '#FCFCFD',
+      blue: {
+        50: '#EEFAFF',
+        400: '#36A8DB',
+      },
       ...twColors
     },
     extend: {
