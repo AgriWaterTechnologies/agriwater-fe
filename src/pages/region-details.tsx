@@ -23,6 +23,7 @@ export function RegionDetails() {
   return (
     <div className="w-full h-screen overflow-auto">
       <Dialog>
+        {/* @ts-ignore */}
         <RegionDetail centralPoint={data.centralPoint} id={data.id} />
       </Dialog>
     </div>

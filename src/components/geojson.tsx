@@ -1,6 +1,5 @@
 import { AlertCircle } from "lucide-react";
 import { useEffect, useState } from "react";
-import { MapContainer } from "react-leaflet";
 import geojsonTemp from "@/assets/geojson-temp.png";
 import geojsonPrecip from "@/assets/geojson-precip.jpg";
 
