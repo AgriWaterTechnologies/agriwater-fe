@@ -1,9 +1,11 @@
 import "leaflet/dist/images/marker-shadow.png";
 import "leaflet/dist/leaflet.css";
+import "leaflet-draw/dist/leaflet.draw.css";
 import L from "leaflet";
 import { useRef } from "react";
 import { FeatureGroup, MapContainer, TileLayer } from "react-leaflet";
 import { FloatingMarker } from "./floating-marker";
+import { EditControl } from "react-leaflet-draw";
 
 const mock = [
   {
@@ -173,6 +175,10 @@ const mock = [
 export function Map() {
   const featureGroupRef = useRef<L.FeatureGroup>(null);
 
+  const _onCreate = (e: any) => {
+    console.log(e);
+  };
+
   return (
     <MapContainer
       // center in brazil
@@ -190,6 +196,23 @@ export function Map() {
           url="https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=w7EUfSW9h5JMGIMOYhUO"
           attribution='&amp;copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         /> */}
+
+        <EditControl
+          position="topleft"
+          onCreated={_onCreate}
+          edit={{
+            edit: false,
+            remove: false,
+          }}
+          draw={{
+            rectangle: false,
+            polyline: false,
+            circle: false,
+            circlemarker: false,
+            marker: false,
+          }}
+        />
+
         <TileLayer
           url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
           attribution='&copy; <a href="https://www.esri.com/en-us/home">Esri</a> | Esri, Maxar, Earthstar Geographics, and the GIS User Community'
