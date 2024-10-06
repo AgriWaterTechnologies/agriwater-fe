@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "../services/api";
 
-interface IFarmer {
+export interface IFarmer {
   companyName: string;
   centralPoint: { lat: number; lon: number };
   regions: IRegion[];
 }
 
-interface IRegion {
-  uid: string;
+export interface IRegion {
+  id: string;
   name: string;
   type: string;
   centralPoint: { lat: number; lon: number };
@@ -36,13 +36,20 @@ export function FarmersProvider() {
 
     if (currentData && currentData.length > 0) {
       const newData = currentData.map(async (region) => {
-        const { data } = await api.get<ForecastData[]>(
-          `/forecast?lat=${region.centralPoint.lat}&lon=${
-            region.centralPoint.lon
-          }&sinceDate=${new Date().toISOString()}&untilDate=${new Date().toISOString()}`
-        );
+        // const { data } = await api.get<ForecastData[]>(
+        //   `/forecast?lat=${region.centralPoint.lat}&lon=${region.centralPoint.lon
+        //   }&sinceDate=${new Date().toISOString()}&untilDate=${new Date().toISOString()}`
+        // );
 
-        return { ...region, forecast: data[0].data[0] };
+        const mockForecastDataItem = {
+          hour: "12:00",
+          temperature: 25,
+          precipitation: 0,
+          humidity: 0,
+        }
+
+        return { ...region, forecast: mockForecastDataItem };
+        // return { ...region, forecast: data[0].data[0] };
       });
 
       currentData = await Promise.all(newData);

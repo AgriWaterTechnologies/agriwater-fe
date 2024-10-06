@@ -17,8 +17,9 @@ export function RegionDetail({
   };
   id: number;
 }) {
+
   const { data: region, isLoading } = useQuery({
-    queryKey: ["region", id],
+    queryKey: ["region",],
     queryFn: async () => {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       return {

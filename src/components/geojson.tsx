@@ -25,7 +25,9 @@ export function Geojson({ coordinates, type }: { coordinates: { lat: number; lon
       <div className="flex flex-col items-start justify-between h-full w-full text-white50">
         <strong>{type === "temperature" ? "Temperature" : "Preciptation"}</strong>
         <div>
-          <p className="text-3xl">25°C</p>
+          <p className="text-3xl">
+            {type === "temperature" ? "25°C" : "403mm"}
+          </p>
         </div>
 
         <div className="flex items-center gap-1 mt-2">
