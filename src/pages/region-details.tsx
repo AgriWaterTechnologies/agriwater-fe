@@ -20,5 +20,11 @@ export function RegionDetails() {
     },
   };
 
-  return <Dialog><RegionDetail centralPoint={data.centralPoint} id={data.id} /></Dialog>
+  return (
+    <div className="w-full h-screen overflow-auto">
+      <Dialog>
+        <RegionDetail centralPoint={data.centralPoint} id={data.id} />
+      </Dialog>
+    </div>
+  );
 }
