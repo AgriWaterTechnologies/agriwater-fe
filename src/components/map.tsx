@@ -2,10 +2,11 @@ import "leaflet/dist/images/marker-shadow.png";
 import "leaflet/dist/leaflet.css";
 import "leaflet-draw/dist/leaflet.draw.css";
 import L from "leaflet";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { FeatureGroup, MapContainer, TileLayer } from "react-leaflet";
 import { FloatingMarker } from "./floating-marker";
 import { EditControl } from "react-leaflet-draw";
+import { AddRegionDialog } from "./add-region-dialog";
 
 const mock = [
   {
@@ -174,60 +175,82 @@ const mock = [
 
 export function Map() {
   const featureGroupRef = useRef<L.FeatureGroup>(null);
+  const [creatingRegion, setCreatingRegion] = useState({
+    open: false,
+    coords: [],
+  });
 
   const _onCreate = (e: any) => {
-    console.log(e);
+    const { layerType, layer } = e;
+
+    if (layerType === "polygon") {
+      const newCoords = layer.getLatLngs()[0].map((latLng: any) => ({
+        lat: latLng.lat,
+        lng: latLng.lng,
+      }));
+
+      setCreatingRegion({ open: true, coords: newCoords });
+    }
   };
 
   return (
-    <MapContainer
-      // center in brazil
-      center={[-15.77972, -47.92972]}
-      zoom={5}
-      minZoom={2.5}
-      style={{ height: "100%", width: "100%", zIndex: 10 }}
-      maxBounds={[
-        [-90, -180],
-        [90, 180],
-      ]}
-    >
-      <FeatureGroup ref={featureGroupRef}>
-        {/* <TileLayer
+    <>
+      <AddRegionDialog
+        isOpen={creatingRegion.open}
+        coordinates={creatingRegion.coords}
+        handleClose={() => setCreatingRegion({ open: false, coords: [] })}
+      />
+
+      <MapContainer
+        // center in brazil
+        center={[-15.77972, -47.92972]}
+        zoom={5}
+        minZoom={2.5}
+        maxZoom={17}
+        style={{ height: "100%", width: "100%", zIndex: 10 }}
+        maxBounds={[
+          [-90, -180],
+          [90, 180],
+        ]}
+      >
+        <FeatureGroup ref={featureGroupRef}>
+          {/* <TileLayer
           url="https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=w7EUfSW9h5JMGIMOYhUO"
           attribution='&amp;copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         /> */}
 
-        <EditControl
-          position="topleft"
-          onCreated={_onCreate}
-          edit={{
-            edit: false,
-            remove: false,
-          }}
-          draw={{
-            rectangle: false,
-            polyline: false,
-            circle: false,
-            circlemarker: false,
-            marker: false,
-          }}
-        />
+          <EditControl
+            position="topleft"
+            onCreated={_onCreate}
+            edit={{
+              edit: false,
+              remove: false,
+            }}
+            draw={{
+              rectangle: false,
+              polyline: false,
+              circle: false,
+              circlemarker: false,
+              marker: false,
+            }}
+          />
 
-        <TileLayer
-          url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-          attribution='&copy; <a href="https://www.esri.com/en-us/home">Esri</a> | Esri, Maxar, Earthstar Geographics, and the GIS User Community'
-        />
+          <TileLayer
+            url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+            attribution='&copy; <a href="https://www.esri.com/en-us/home">Esri</a> | Esri, Maxar, Earthstar Geographics, and the GIS User Community'
+          />
 
-        {mock.map((item, index) => (
-          <div key={index}>
-            {item.regions.map((region, index) => (
-              <div key={index}>
-                <FloatingMarker region={region} />
-              </div>
-            ))}
-          </div>
-        ))}
-      </FeatureGroup>
-    </MapContainer>
+          {mock.map((item, index) => (
+            <div key={index}>
+              {item.regions.map((region, index) => (
+                <div key={index}>
+                  <FloatingMarker region={region} />
+                </div>
+              ))}
+            </div>
+          ))}
+        </FeatureGroup>
+      </MapContainer>
+    </>
   );
 }

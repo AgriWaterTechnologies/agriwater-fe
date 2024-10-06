@@ -5,7 +5,7 @@ import {
 } from "@/components/ui/drawer"
 import { useState } from "react"
 import { Marker, Polygon } from "react-leaflet"
-import { DrawerDetail } from "./drawer-detail"
+import { RegionDetail } from "./region-detail"
 
 export function FloatingMarker({
   region,
@@ -36,7 +36,7 @@ export function FloatingMarker({
       </DrawerTrigger>
       <DrawerContent className="z-50 bg-[#F6F6F6]">
         <div className="mx-auto w-full max-w-2xl h-[500px]">
-          <DrawerDetail id={region.uid} />
+          <RegionDetail id={region.uid} centralPoint={region.centralPoint} />
         </div>
       </DrawerContent>
     </Drawer>
