@@ -2,13 +2,13 @@ import { useParams } from "react-router-dom";
 import { PageNotFound } from "./404";
 import { RegionDetail } from "@/components/region-detail";
 import { Dialog } from "@/components/ui/dialog";
-import { FarmersProvider, IRegion } from "@/app/query-provider/farmers";
+// import { FarmersProvider } from "@/app/query-provider/farmers";
 
 export function RegionDetails() {
   const { id } = useParams();
-  const { farmers } = FarmersProvider()
+  //const { farmers } = FarmersProvider()
 
-  const region = farmers?.find((region) => region.id === id);
+  //const region = farmers?.find((region) => region.id === id);
 
   if (!id) {
     return <PageNotFound />;
@@ -27,7 +27,8 @@ export function RegionDetails() {
   return (
     <div className="w-full h-screen overflow-auto">
       <Dialog>
-        <RegionDetail region={region as IRegion} />
+        {/* @ts-ignore */}
+        <RegionDetail centralPoint={data.centralPoint} id={data.id} />
       </Dialog>
     </div>
   );
