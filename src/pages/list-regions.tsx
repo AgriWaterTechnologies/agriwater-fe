@@ -19,11 +19,12 @@ export default function ListRegions() {
   return (
     <Wrapper className="justify-center flex h-full overflow-hidden">
       <Header title="Regions" disableBackButton />
-      <div className="w-full max-w-4xl h-full overflow-hidden">
+      <div className="w-full max-w-4xl h-full overflow-hidden pt-12">
         <div className="z-30 flex flex-col h-full rounded-lg bg-white px-6 gap-6 overflow-hidden pb-14">
           <Input
             startIcon={<Search size={18} className="text-white400" />}
             rootClassName="w-full"
+            className="outline-none"
             placeholder="Search regions..."
             onChange={(e) => setSearchParams(e.target.value)}
             value={searchParams}

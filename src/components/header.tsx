@@ -10,7 +10,7 @@ export function Header({ disableBackButton = false, title = "" }: HeaderProps) {
   const navigate = useNavigate();
 
   const { pathname } = useLocation();
-  
+
   return (
     <div className="w-full fixed top-0 left-0 right-0 justify-center flex z-50">
       <header className="w-full max-w-4xl flex items-center h-20 px-4 gap-4 font-medium text-green800 text-2xl bg-white">
@@ -23,7 +23,9 @@ export function Header({ disableBackButton = false, title = "" }: HeaderProps) {
               <ArrowLeft size={22} />
             </div>
           )}
-          {title}
+          <span>
+            {title}
+          </span>
         </div>
       </header>
     </div>

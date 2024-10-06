@@ -92,9 +92,7 @@ export function Map() {
           {!isLoading &&
             farmers?.map((item, index) => (
               <div key={index}>
-                <div key={index}>
-                  <FloatingMarker region={item} />
-                </div>
+                <FloatingMarker region={item} />
               </div>
             ))}
         </FeatureGroup>
