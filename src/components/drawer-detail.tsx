@@ -57,12 +57,12 @@ export function DrawerDetail({ id }: { id: number }) {
           
           </div>
 
-          <DrawerFooter>
+          {/* <DrawerFooter>
             <Button>Submit</Button>
             <DrawerClose>
               <Button variant="outline">Cancel</Button>
             </DrawerClose>
-          </DrawerFooter>
+          </DrawerFooter> */}
         </div>
       )}
     </>
