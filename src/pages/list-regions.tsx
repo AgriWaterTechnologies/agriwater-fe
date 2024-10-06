@@ -4,7 +4,7 @@ import { Header } from "@/components/header";
 import { RegionCard } from "@/components/rigion-card";
 import { Input } from "@/components/ui/input";
 import Wrapper from "@/components/wrapper";
-import { Search } from "lucide-react";
+import { FileSearch, Search } from "lucide-react";
 import { useState } from "react";
 
 export default function ListRegions() {
@@ -70,6 +70,12 @@ export default function ListRegions() {
                 precipitation={{ probability: 50 }}
               />
             ))}
+            {filteredRegions.length === 0 && (
+              <div className="flex flex-col items-center justify-center gap-3 py-12">
+                <FileSearch size={32} className="text-white400" />
+                <p className="text-white400 text-2xl">No regions found</p>
+              </div>
+            )}
           </div>
         </div>
         <FloatingMenu />
