@@ -6,6 +6,7 @@ import { Header } from "./header";
 import { PredictionTable } from "./prediction-table";
 import { RiverRiskTag } from "./rivers-risk-tag";
 import Wrapper from "./wrapper";
+import { RiverChart } from "./river-chart";
 
 export function RegionDetail({
   id,
@@ -107,6 +108,8 @@ export function RegionDetail({
 
                   <RiverRiskTag type="danger" name="River 2" />
                 </div>
+
+                <RiverChart />
               </div>
             </div>
           </div>

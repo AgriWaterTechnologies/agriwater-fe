@@ -28,6 +28,21 @@ export interface ForecastDataItem {
   humidity: number;
 }
 
+export interface RiverHeight {
+  id: string
+  name: string
+  height: number
+  company: Company
+  createdAt: string
+  updatedAt: string
+}
+
+export interface Company {
+  id: string
+  name: string
+}
+
+
 export function FarmersProvider() {
   async function fetchFarmers(): Promise<IFarmer["regions"]> {
     const { data } = await api.get<IFarmer["regions"]>("/regions");
