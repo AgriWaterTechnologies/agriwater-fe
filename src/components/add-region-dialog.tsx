@@ -13,6 +13,8 @@ import { Input } from "./ui/input";
 import { MapPinned } from "lucide-react";
 import { FarmersProvider } from "@/app/query-provider/farmers";
 import toast from "react-hot-toast";
+import { useMutation } from "@tanstack/react-query";
+import api from "@/app/services/api";
 
 interface AddRegionDialogProps {
   isOpen: boolean;
@@ -20,23 +22,33 @@ interface AddRegionDialogProps {
   coordinates: { lat: number; lon: number }[];
 }
 
-export function AddRegionDialog({ isOpen, coordinates, handleClose }: AddRegionDialogProps) {
+export function AddRegionDialog({
+  isOpen,
+  coordinates,
+  handleClose,
+}: AddRegionDialogProps) {
   const [regionName, setRegionName] = React.useState("");
 
   const { refetch } = FarmersProvider();
 
   async function addFarmer() {
-    await toast.promise(
-      new Promise((resolve) => setTimeout(resolve, 1000)),
-      {
-        loading: "Adding region...",
-        success: "Region added!",
-        error: "Failed to add region",
-      })
+    const toastId = toast.loading("Adding region...");
 
-    setRegionName("")
-    handleClose();
-    refetch();
+    try {
+      await api.post("/regions", {
+        name: regionName,
+        coordinates,
+        companyId: "8da5444f-12a6-48de-a373-d58e27e83724"
+      });
+      await refetch();
+      setRegionName("");
+      toast.success("Region added successfully", { id: toastId });
+    } catch (error) {
+      toast.error("Something went wrong", { id: toastId });
+    } finally {
+      handleClose();
+      setRegionName("");
+    }
   }
 
   // get the center of the polygon
@@ -88,7 +100,11 @@ export function AddRegionDialog({ isOpen, coordinates, handleClose }: AddRegionD
           >
             Cancel
           </Button>
-          <Button type="submit" className="w-full bg-green600 hover:bg-green700" onClick={addFarmer}>
+          <Button
+            type="submit"
+            className="w-full bg-green600 hover:bg-green700"
+            onClick={addFarmer}
+          >
             Save
           </Button>
         </DialogFooter>

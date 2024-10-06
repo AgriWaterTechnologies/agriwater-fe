@@ -1,3 +1,4 @@
+import { FarmersProvider } from "@/app/query-provider/farmers";
 import { FloatingMenu } from "@/components/floating-menu";
 
 import { Header } from "@/components/header";
@@ -9,154 +10,9 @@ import { useState } from "react";
 
 export default function ListRegions() {
   const [searchParams, setSearchParams] = useState("");
-  const mock = [
-    {
-      id: 1,
-      name: "Nasa",
-      max: 34,
-      min: 21,
-      current: 23,
-      risk: "Low",
-      precipitation: {
-        probability: 50,
-      },
-    },
-    {
-      id: 2,
-      name: "Rio Grande",
-      max: 34,
-      min: 21,
-      current: 23,
-      risk: "Low",
-      precipitation: {
-        probability: 50,
-      },
-    },
-    {
-      id: 3,
-      name: "Amazonas",
-      max: 34,
-      min: 21,
-      current: 23,
-      risk: "Low",
-      precipitation: {
-        probability: 50,
-      },
-    },
-    {
-      id: 3,
-      name: "Amazonas",
-      max: 34,
-      min: 21,
-      current: 23,
-      risk: "Low",
-      precipitation: {
-        probability: 50,
-      },
-    },    {
-      id: 3,
-      name: "Amazonas",
-      max: 34,
-      min: 21,
-      current: 23,
-      risk: "Low",
-      precipitation: {
-        probability: 50,
-      },
-    },    {
-      id: 3,
-      name: "Amazonas",
-      max: 34,
-      min: 21,
-      current: 23,
-      risk: "Low",
-      precipitation: {
-        probability: 50,
-      },
-    },    {
-      id: 3,
-      name: "Amazonas",
-      max: 34,
-      min: 21,
-      current: 23,
-      risk: "Low",
-      precipitation: {
-        probability: 50,
-      },
-    },    {
-      id: 3,
-      name: "Amazonas",
-      max: 34,
-      min: 21,
-      current: 23,
-      risk: "Low",
-      precipitation: {
-        probability: 50,
-      },
-    },    {
-      id: 3,
-      name: "Amazonas",
-      max: 34,
-      min: 21,
-      current: 23,
-      risk: "Low",
-      precipitation: {
-        probability: 50,
-      },
-    },    {
-      id: 3,
-      name: "Amazonas",
-      max: 34,
-      min: 21,
-      current: 23,
-      risk: "Low",
-      precipitation: {
-        probability: 50,
-      },
-    },    {
-      id: 3,
-      name: "Amazonas",
-      max: 34,
-      min: 21,
-      current: 23,
-      risk: "Low",
-      precipitation: {
-        probability: 50,
-      },
-    },    {
-      id: 3,
-      name: "Amazonas",
-      max: 34,
-      min: 21,
-      current: 23,
-      risk: "Low",
-      precipitation: {
-        probability: 50,
-      },
-    },    {
-      id: 3,
-      name: "Amazonas",
-      max: 34,
-      min: 21,
-      current: 23,
-      risk: "Low",
-      precipitation: {
-        probability: 50,
-      },
-    },    {
-      id: 3,
-      name: "Amazonas",
-      max: 34,
-      min: 21,
-      current: 23,
-      risk: "Low",
-      precipitation: {
-        probability: 50,
-      },
-    },
-  ];
+  const { farmers } = FarmersProvider();
 
-  const filteredRegions = mock.filter((region) =>
+  const filteredRegions = farmers?.filter((region) =>
     region.name.toLowerCase().includes(searchParams.toLowerCase())
   );
 
@@ -173,19 +29,19 @@ export default function ListRegions() {
             value={searchParams}
           />
           <div className="flex flex-col w-full h-screen gap-4 overflow-auto pb-10">
-            {filteredRegions.map((region) => (
+            {filteredRegions && filteredRegions?.length > 0 && filteredRegions?.map((region) => (
               <RegionCard
-                key={region.name}
+                key={region.uid}
                 name={region.name}
-                max={region.max}
-                min={region.min}
-                current={region.current}
-                risk={region.risk}
-                id={region.id}
+                max={(region?.forecast?.temperature && region?.forecast?.temperature + 2)?.toFixed(0) || 0}
+                min={(region?.forecast?.temperature && region?.forecast?.temperature - 11)?.toFixed(0) || 0}
+                current={region.forecast?.temperature.toFixed(0) || 0}
+                risk={"Normal"}
+                id={region.uid}
                 precipitation={{ probability: 50 }}
               />
             ))}
-            {filteredRegions.length === 0 && (
+            {!filteredRegions || filteredRegions?.length === 0 && (
               <div className="flex flex-col items-center justify-center gap-3 py-12">
                 <FileSearch size={32} className="text-white400" />
                 <p className="text-white400 text-2xl">No regions found</p>

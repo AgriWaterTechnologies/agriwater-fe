@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 type RegionCardProps = {
   name: string;
-  id: number;
-  max: number;
-  min: number;
-  current: number;
+  id: string;
+  max: string | number;
+  min: number | string;
+  current: number | string;
   precipitation: {
     probability: number;
   };

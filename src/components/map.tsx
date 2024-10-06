@@ -10,7 +10,7 @@ import { AddRegionDialog } from "./add-region-dialog";
 import { FarmersProvider } from "@/app/query-provider/farmers";
 
 export function Map() {
-  const { farmers, isLoading, isRefetching } = FarmersProvider();
+  const { farmers, isLoading } = FarmersProvider();
 
   const featureGroupRef = useRef<L.FeatureGroup>(null);
   const [creatingRegion, setCreatingRegion] = useState({
@@ -24,10 +24,21 @@ export function Map() {
     if (layerType === "polygon") {
       const newCoords = layer.getLatLngs()[0].map((latLng: any) => ({
         lat: latLng.lat,
-        lon: latLng.lon,
+        lon: latLng.lng,
       }));
 
       setCreatingRegion({ open: true, coords: newCoords });
+    }
+  };
+
+  const _closeCreatingRegion = () => {
+    setCreatingRegion({ open: false, coords: [] });
+
+    if (featureGroupRef.current) {
+      featureGroupRef.current
+        .getLayers()
+        .find((layer) => layer instanceof L.Polygon)
+        ?.remove();
     }
   };
 
@@ -36,7 +47,7 @@ export function Map() {
       <AddRegionDialog
         isOpen={creatingRegion.open}
         coordinates={creatingRegion.coords}
-        handleClose={() => setCreatingRegion({ open: false, coords: [] })}
+        handleClose={_closeCreatingRegion}
       />
 
       <MapContainer
@@ -78,16 +89,14 @@ export function Map() {
             attribution='&copy; <a href="https://www.esri.com/en-us/home">Esri</a> | Esri, Maxar, Earthstar Geographics, and the GIS User Community'
           />
 
-
-          {!isLoading && farmers?.map((item, index) => (
-            <div key={index}>
-              {item.regions.map((region, index) => (
+          {!isLoading &&
+            farmers?.map((item, index) => (
+              <div key={index}>
                 <div key={index}>
-                  <FloatingMarker region={region} />
+                  <FloatingMarker region={item} />
                 </div>
-              ))}
-            </div>
-          ))}
+              </div>
+            ))}
         </FeatureGroup>
       </MapContainer>
     </>
