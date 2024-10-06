@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-import { colors as twColors } from 'tailwindcss/colors'
+import twColors from 'tailwindcss/colors'
 
 export default {
   darkMode: ["class"],
@@ -8,7 +8,6 @@ export default {
   ],
   theme: {
     colors: {
-      ...twColors,
       green900: '#2C322E',
       green800: '#253B2E',
       green700: '#2D6645',
@@ -18,7 +17,8 @@ export default {
       white300: '#C8CED9',
       white200: '#E0E4EA',
       white100: '#F1F3F6',
-      white50: '#FCFCFD'
+      white50: '#FCFCFD',
+      ...twColors
     },
     extend: {
       borderRadius: {

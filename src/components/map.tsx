@@ -176,7 +176,8 @@ export function Map() {
 
   return (
     <MapContainer
-      center={[0, 0]}
+      // center in brazil
+      center={[-15.77972, -47.92972]}
       zoom={5}
       minZoom={2.5}
       style={{ height: "100%", width: "100%", zIndex: 10 }}
