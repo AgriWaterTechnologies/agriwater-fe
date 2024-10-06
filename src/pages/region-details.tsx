@@ -16,7 +16,7 @@ export function RegionDetails() {
     idealCultivation: ["Tomate", "Batata", "Cenoura"],
     centralPoint: {
       lat: 51.505,
-      lng: -0.09,
+      lon: -0.09,
     },
   };
 

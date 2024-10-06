@@ -20,7 +20,7 @@ export function FloatingMarker({
     }}>
       <DrawerTrigger asChild className="relative">
         <>
-          <Marker position={[region.centralPoint.lat, region.centralPoint.lng]} eventHandlers={{
+          <Marker position={[region.centralPoint.lat, region.centralPoint.lon]} eventHandlers={{
             click: () => {
               setOpen(true)
             }
