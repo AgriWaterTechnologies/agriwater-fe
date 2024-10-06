@@ -3,14 +3,14 @@ import { AlertCircle } from "lucide-react";
 
 import api from "@/app/services/api";
 
-export function GeojsonList({ coordinates }: { coordinates: { lat: number; lng: number } }) {
+export function GeojsonList({ coordinates }: { coordinates: { lat: number; lon: number } }) {
   const fetchGeoJson = async () => {
     try {
       const { data } = await api.get("/forecast/image", {
         params: {
           type: "temperature",
           lat: coordinates.lat,
-          lon: coordinates.lng,
+          lon: coordinates.lon,
           date: new Date().toISOString(),
           offset: 0,
         }
@@ -48,7 +48,7 @@ export function GeojsonList({ coordinates }: { coordinates: { lat: number; lng: 
         </div>
       </div>
       <div className="h-full w-full">
-        {/* <MapContainer center={[coordinates.lat, coordinates.lng]} zoom={2} className="h-full w-full">
+        {/* <MapContainer center={[coordinates.lat, coordinates.lon]} zoom={2} className="h-full w-full">
           <TileLayer
             url="https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=w7EUfSW9h5JMGIMOYhUO"
             attribution='&amp;copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'

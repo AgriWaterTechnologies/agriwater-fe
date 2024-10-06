@@ -11,29 +11,42 @@ import {
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { MapPinned } from "lucide-react";
+import { FarmersProvider } from "@/app/query-provider/farmers";
+import toast from "react-hot-toast";
 
 interface AddRegionDialogProps {
   isOpen: boolean;
   handleClose: () => void;
-  coordinates: { lat: number; lng: number }[];
+  coordinates: { lat: number; lon: number }[];
 }
 
 export function AddRegionDialog({ isOpen, coordinates, handleClose }: AddRegionDialogProps) {
   const [regionName, setRegionName] = React.useState("");
 
-  async function handleSubmit() {
-    // Send the data to the backend
+  const { refetch } = FarmersProvider();
+
+  async function addFarmer() {
+    await toast.promise(
+      new Promise((resolve) => setTimeout(resolve, 1000)),
+      {
+        loading: "Adding region...",
+        success: "Region added!",
+        error: "Failed to add region",
+      })
+
+    setRegionName("")
     handleClose();
+    refetch();
   }
 
   // get the center of the polygon
   const center = coordinates.reduce(
     (acc, curr) => {
       acc.lat += curr.lat;
-      acc.lng += curr.lng;
+      acc.lon += curr.lon;
       return acc;
     },
-    { lat: 0, lng: 0 }
+    { lat: 0, lon: 0 }
   );
 
   return (
@@ -47,7 +60,7 @@ export function AddRegionDialog({ isOpen, coordinates, handleClose }: AddRegionD
               <span className="font-medium">Coordinates</span>
             </div>
 
-            <span>{`${center.lat}, ${center.lng}`}</span>
+            <span>{`${center.lat}, ${center.lon}`}</span>
           </DialogDescription>
         </DialogHeader>
 
@@ -75,7 +88,7 @@ export function AddRegionDialog({ isOpen, coordinates, handleClose }: AddRegionD
           >
             Cancel
           </Button>
-          <Button type="submit" className="w-full bg-green600 hover:bg-green700">
+          <Button type="submit" className="w-full bg-green600 hover:bg-green700" onClick={addFarmer}>
             Save
           </Button>
         </DialogFooter>

@@ -10,7 +10,7 @@ export function RegionDetail({
 }: {
   centralPoint: {
     lat: number;
-    lng: number;
+    lon: number;
   };
   id: number;
 }) {
@@ -24,7 +24,7 @@ export function RegionDetail({
         idealCultivation: ["Tomato", "Potato", "Carrot"],
         centralPoint: {
           lat: centralPoint.lat,
-          lng: centralPoint.lng,
+          lon: centralPoint.lon,
         },
       };
     },
