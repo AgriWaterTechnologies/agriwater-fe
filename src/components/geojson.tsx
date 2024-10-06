@@ -1,6 +1,8 @@
 import { AlertCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { MapContainer } from "react-leaflet";
+import geojsonTemp from "@/assets/geojson-temp.png";
+import geojsonPrecip from "@/assets/geojson-precip.jpg";
 
 
 export function Geojson({ coordinates, type }: { coordinates: { lat: number; lon: number }, type: string }) {
@@ -36,8 +38,8 @@ export function Geojson({ coordinates, type }: { coordinates: { lat: number; lon
         </div>
       </div>
 
-      <div className="h-full max-h-max w-max rounded">
-        {!hasLoaded && <div className="h-full w-full bg-white100 animate-pulse"></div>}
+      <div className="h-full max-h-max w-[300px] rounded">
+        {/* {!hasLoaded && <div className="h-full w-full bg-white100 animate-pulse"></div>}
 
         {hasLoaded && (
           <MapContainer
@@ -50,24 +52,22 @@ export function Geojson({ coordinates, type }: { coordinates: { lat: number; lon
               [90, 180],
             ]}
           >
-            {/* <TileLayer
-              url="https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=w7EUfSW9h5JMGIMOYhUO"
-              attribution='&amp;copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            /> */}
-            {/* <ImageOverlay url={imageURL as string} bounds={
-              [
-                [coordinates.lat - 0.5, coordinates.lon - 0.5],
-                [coordinates.lat + 0.5, coordinates.lon + 0.5]
-              ]
-            } /> */}
             {hasLoaded && (
               <img
                 className="h-full w-full object-fit"
-                src={imageURL as string}
+                src={geojsonTemp as string}
               />
             )}
+
+            <img
+              className="h-full w-full object-fit"
+              src={geojsonTemp as string}
+            />
           </MapContainer>
-        )}
+        )} */}
+
+        {type === "temperature" && <img src={geojsonTemp} alt="geojson" className="h-full w-full object-fit rounded-md" />}
+        {type === "precipitation" && <img src={geojsonPrecip} alt="geojson" className="h-full w-full object-fit rounded-md" />}
       </div>
     </div>
   );

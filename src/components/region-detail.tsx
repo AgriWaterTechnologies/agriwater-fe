@@ -7,29 +7,24 @@ import { PredictionTable } from "./prediction-table";
 import { RiverRiskTag } from "./rivers-risk-tag";
 import Wrapper from "./wrapper";
 import { RiverChart } from "./river-chart";
+import { IRegion } from "@/app/query-provider/farmers";
 
 export function RegionDetail({
-  id,
-  centralPoint,
+  region
 }: {
-  centralPoint: {
-    lat: number;
-    lon: number;
-  };
-  id: number;
+  region: IRegion
 }) {
 
-  const { data: region, isLoading } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["region",],
     queryFn: async () => {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
       return {
-        id,
-        name: "Region " + id.toString().slice(0, 12),
+        id: region.id,
+        name: region.name,
         idealCultivation: ["Tomato", "Potato", "Carrot"],
         centralPoint: {
-          lat: centralPoint.lat,
-          lon: centralPoint.lon,
+          lat: region.centralPoint.lat,
+          lon: region.centralPoint.lon,
         },
       };
     },
@@ -52,7 +47,7 @@ export function RegionDetail({
                 </div>
 
                 <div className="flex gap-2 items-center mt-2">
-                  {region?.idealCultivation.map((cultivation) => (
+                  {["Tomato", "Potato", "Carrot"].map((cultivation) => (
                     <div
                       key={cultivation}
                       className="text-gray-600 text-sm py-1 px-2 rounded bg-white200"

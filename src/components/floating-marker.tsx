@@ -46,7 +46,7 @@ export function FloatingMarker({
       </DrawerTrigger>
       <DrawerContent className="z-50 bg-white">
         <div className="mx-auto w-full max-w-4xl h-[500px] overflow-auto">
-          <RegionDetail id={region.id as any} centralPoint={region.centralPoint} />
+          <RegionDetail region={region} />
         </div>
       </DrawerContent>
     </Drawer>
