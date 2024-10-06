@@ -5,11 +5,11 @@ import { Toaster } from "react-hot-toast"
 
 function App() {
   const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+      }
     }
-  }   
   })
 
   return (
