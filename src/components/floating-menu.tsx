@@ -18,7 +18,7 @@ export function FloatingMenu() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex items-center gap-2 absolute bottom-4 left-1/2 transform -translate-x-1/2  z-50 p-2 bg-green600 w-[200px] rounded-full">
+    <div className="flex items-center gap-2 fixed bottom-4 left-1/2 transform -translate-x-1/2  z-50 p-2 bg-green600 w-[200px] rounded-full">
       <Button
         className={cn(
           "w-full rounded-full hover:bg-green700 bg-transparent shadow-none",
