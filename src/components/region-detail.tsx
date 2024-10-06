@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Droplet, Sprout, Sunrise, Sunset, Waves, Wind } from "lucide-react";
-import { GeojsonList } from "./geojson-list";
+import { Geojson } from "./geojson";
 import { DrawerHeader } from "./ui/drawer";
 import { Header } from "./header";
 import { PredictionTable } from "./prediction-table";
@@ -33,11 +33,6 @@ export function RegionDetail({
     },
   });
 
-  console.log({
-    region,
-    isLoading,
-  });
-
   return (
     <Wrapper>
       {isLoading && <RegionDetailSkeleton />}
@@ -66,7 +61,11 @@ export function RegionDetail({
                 </div>
               </div>
 
-              <GeojsonList coordinates={region.centralPoint} />
+              {/* list geojson's */}
+              <div className="flex flex-col gap-4">
+                <Geojson coordinates={region.centralPoint} type="temperature" />
+                <Geojson coordinates={region.centralPoint} type="precipitation" />
+              </div>
 
               <div className="flex gap-4 flex-wrap items-center">
                 <div className="flex items-center text-green700 gap-2 border border-green700 rounded-md p-2 w-fit">

@@ -10,7 +10,7 @@ import { AddRegionDialog } from "./add-region-dialog";
 import { FarmersProvider } from "@/app/query-provider/farmers";
 
 export function Map() {
-  const { farmers, isLoading, isRefetching } = FarmersProvider();
+  const { farmers, isLoading } = FarmersProvider();
 
   const featureGroupRef = useRef<L.FeatureGroup>(null);
   const [creatingRegion, setCreatingRegion] = useState({

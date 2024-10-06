@@ -198,9 +198,6 @@ export function FarmersProvider() {
   const { data: farmers, isLoading, isRefetching, refetch } = useQuery<IFarmer[]>({
     queryKey: ["farmers"],
     queryFn: () => fetchFarmers(),
-    refetchInterval: 10000,
-    staleTime: 10000,
-    refetchOnWindowFocus: false,
   })
 
   return {
