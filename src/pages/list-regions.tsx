@@ -31,13 +31,13 @@ export default function ListRegions() {
           <div className="flex flex-col w-full h-screen gap-4 overflow-auto pb-10">
             {filteredRegions && filteredRegions?.length > 0 && filteredRegions?.map((region) => (
               <RegionCard
-                key={region.uid}
+                key={region.id}
                 name={region.name}
                 max={(region?.forecast?.temperature && region?.forecast?.temperature + 2)?.toFixed(0) || 0}
                 min={(region?.forecast?.temperature && region?.forecast?.temperature - 11)?.toFixed(0) || 0}
                 current={region.forecast?.temperature.toFixed(0) || 0}
                 risk={"Normal"}
-                id={region.uid}
+                id={region.id}
                 precipitation={{ probability: 50 }}
               />
             ))}
