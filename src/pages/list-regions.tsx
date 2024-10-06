@@ -47,31 +47,33 @@ export default function ListRegions() {
   );
 
   return (
-    <Wrapper>
-      <Header title="Regions" />
-      <div className="z-30 flex flex-col h-full rounded-lg bg-white px-6 gap-6">
-        <Input
-          startIcon={<Search size={18} className="text-white400" />}
-          rootClassName="w-full"
-          placeholder="Search regions..."
-          onChange={(e) => setSearchParams(e.target.value)}
-          value={searchParams}
-        />
-        <div className="flex flex-col w-full gap-4 overflow-auto">
-          {filteredRegions.map((region) => (
-            <RegionCard
-              key={region.name}
-              name={region.name}
-              max={region.max}
-              min={region.min}
-              current={region.current}
-              risk={region.risk}
-              precipitation={{ probability: 50 }}
-            />
-          ))}
+    <Wrapper className="justify-center flex h-full overflow-hidden">
+      <div className="w-full max-w-4xl h-full">
+        <Header title="Regions" />
+        <div className="z-30 flex flex-col h-full rounded-lg bg-white px-6 gap-6">
+          <Input
+            startIcon={<Search size={18} className="text-white400" />}
+            rootClassName="w-full"
+            placeholder="Search regions..."
+            onChange={(e) => setSearchParams(e.target.value)}
+            value={searchParams}
+          />
+          <div className="flex flex-col w-full gap-4 overflow-auto mb-28">
+            {filteredRegions.map((region) => (
+              <RegionCard
+                key={region.name}
+                name={region.name}
+                max={region.max}
+                min={region.min}
+                current={region.current}
+                risk={region.risk}
+                precipitation={{ probability: 50 }}
+              />
+            ))}
+          </div>
         </div>
+        <FloatingMenu />
       </div>
-      <FloatingMenu />
     </Wrapper>
   );
 }
