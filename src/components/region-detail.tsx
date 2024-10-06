@@ -15,7 +15,7 @@ export function RegionDetail({
   region: IRegion
 }) {
 
-  const { data, isLoading } = useQuery({
+  const { isLoading } = useQuery({
     queryKey: ["region",],
     queryFn: async () => {
       return {
