@@ -35,7 +35,7 @@ export function FloatingMarker({
         </>
       </DrawerTrigger>
       <DrawerContent className="z-50 bg-[#F6F6F6]">
-        <div className="mx-auto w-full max-w-sm h-[500px]">
+        <div className="mx-auto w-full max-w-2xl h-[500px]">
           <DrawerDetail id={region.uid} />
         </div>
       </DrawerContent>
